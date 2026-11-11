@@ -6,14 +6,8 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 
-[InitializeOnLoad]
 public static class GameOverArtSetup
 {
-    static GameOverArtSetup()
-    {
-        EditorApplication.delayCall += EnsureSadCatImage;
-    }
-
     [MenuItem("Doodlik/Refresh Game Over Cat")]
     public static void EnsureSadCatImage()
     {

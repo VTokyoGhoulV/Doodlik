@@ -42,6 +42,7 @@ public class Bush : MonoBehaviour
         for (int i = 0; i < beeCount; i++)
         {
             GameObject bee = Instantiate(scaredBeePrefab, transform.position, Quaternion.identity);
+            PortraitModelScaler.Attach(bee);
             Vector2 direction = Random.insideUnitCircle.normalized;
             direction.y = Mathf.Abs(direction.y) + 0.25f;
             direction.Normalize();

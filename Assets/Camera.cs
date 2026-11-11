@@ -16,6 +16,7 @@ public class CameraFollow : MonoBehaviour
 
     void LateUpdate()
     {
+        if (player == null || !RunFlow.IsPlaying) return;
         if (player.position.y > highestY)
         {
             highestY = player.position.y;
@@ -32,11 +33,7 @@ public class CameraFollow : MonoBehaviour
                 transform.position.z
             );
 
-            transform.position = Vector3.Lerp(
-                transform.position,
-                targetPosition,
-                smoothSpeed * Time.deltaTime
-            );
+            transform.position = targetPosition;
         }
     }
 }

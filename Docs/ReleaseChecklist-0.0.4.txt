@@ -1,0 +1,122 @@
+DOODLIK 0.0.4 — СБОРКА И ПРОВЕРКА КОМПЛЕКТА
+30.10.2026
+============================================================
+
+Статус: комплект подготовлен для передачи игрокам, с ограничениями
+проверки физических устройств. Старые версии не заменялись.
+Папка: C:\Users\TokyoGhoul\Desktop\Doodlik\v0.0.4
+
+СОСТАВ
+• Doodlik-Windows-v0.0.4\ — Windows x64/Mono,192файла,210231793байта.
+• Doodlik-Android-v0.0.4.apk — Android ARM64/IL2CPP,54013685байт.
+• Doodlik_v0.0.4_Патчноут.txt — изменения после выпущенной0.0.3,13079байт.
+• Doodlik v0.0.4.rar — обе сборки и TXT,107214830байт.
+В архиве194файла; в папке выпуска195файлов с учётом самогоRAR.
+
+КОНФИГУРАЦИЯ
+Unity6000.5.2f1, GitHEAD475853f с сохранёнными существующими изменениями.
+Исходный проект: C:\Users\TokyoGhoul\Doodlik.
+Номер игры0.0.4 и Android versionCode4 обновлены в исходном PlayerSettings.
+companyName=DefaultCompany, productName=Doodlik сохранены.
+Android package=com.tokyoghoul.doodlik, minSDK26,targetSDK36,arm64-v8a.
+Единственная сцена: Assets/Scenes/SampleScene.unity.
+Обычные non-Development сборки; админ-панель недоступна.
+Пакеты, сцены и игровой код этим выпуском не изменялись.
+Патчноут основан на последней опубликованной0.0.3 от18.10.2026,
+а не только на последнем наборе15испытаний.
+
+СПОСОБ СБОРКИ
+Создана свежая .utmp/ReleaseBuild-004-20261030 из Assets+Packages+
+ProjectSettings, без Library/Temp/UserSettings предыдущих QA-копий.
+Production identity и версия перепроверены перед запуском.
+Unity скрыто: -batchmode -quit -noaudio -buildTarget Win64
+-executeMethod BuildReleases.BuildToStaging.
+Выход: .utmp/Release-v0.0.4-Staging.
+Все тесты дополнительно заглушены SilentValidationAudio/master mute.
+
+Windows BuildPipeline Succeeded; scene/prefab/settings bindings PASS:
+scenes1,prefabs3,settings83. Android C#/IL2CPP и Gradle project сгенерированы,
+но встроенный запуск Gradle завершился известной ошибкой Java
+Unable to establish loopback connection; этот неуспешный запуск сохранён.
+Проект/версия/подпись ради обхода ошибки не менялись.
+Тот же СВЕЖИЙ Gradle-проект0.0.4 собран напрямую bundled OpenJDK/Gradle9.1:
+process-local JAVA_TOOL_OPTIONS=-Djdk.net.unixdomain.tmpdir=<.utmp/jtmp>,
+GradleMain -Dorg.gradle.jvmargs=-Xmx4096m --no-daemon assembleRelease --stacktrace.
+Результат: BUILD SUCCESSFUL in1m1s,89tasks,exit0.
+Системные Java/firewall-настройки и глобальные переменные не менялись.
+launcher-release.apk скопирован без переподписи и совпадает поSHA256.
+
+ПРОВЕРКА ИТОГОВЫХ АРТЕФАКТОВ
+• Windows serialized bindings:5files,131components,2178MonoScripts,
+  errors0. APK:103files,131components,2144MonoScripts,errors0.
+• В обоих serialized PlayerSettings подтверждена именно версия0.0.4;
+  EXE FileVersion версии Unity не использовался как версия игры.
+• Compiled catalog:55уникальных условий(42run/13career), все15новыхID,
+  runtime-типы статистики/испытаний/ракеты/шмеля и актуальные audit-hooks.
+  Внутренняя схема профиля8; это отдельно от номера версии игры.
+• Cecil: AdminTools.IsAvailable=false, Update отсутствует;
+  production Assembly-CSharp не содержит Smoke/Validation/Codex-типов
+  или UnityEditor references. Проверен Android ManagedStripped input.
+• aapt: package/versionName0.0.4/code4/SDK26–36/ARM64 правильные,
+  debuggable=false, новых permissions относительно0.0.3 нет.
+• apksigner verify exit0,v2; сертификат совпадает с опубликованной0.0.3:
+  cd327499e822a46bff92454c16a23964dd265ce3dbd8412e62cf7983fc728144.
+  Это прежний локальный Android Debug certificate при non-Development
+  варианте игры; новый ключ магазина не создавался.
+• APK metadata и все7native SO побайтно совпадают со свежими Gradle inputs.
+• Burst DoNotShip symbols не удалены, а сохранены отдельно:
+  Logs/Release-0.0.4-Symbols/Windows-Burst и Android-Burst.
+  Они, Il2CppBackup, keystore, debug/PDB/MDB/logs в публикацию не вошли.
+  Runtime Mono settings.map оставлены на месте: это не debug-symbol maps.
+
+ПРОВЕРКА ЗАПУСКА
+Отдельный non-Development Windows release-player с тем же162C# и их.meta
+построен существующим ReleasePlayerSmokeBuild.Run. Только у него включён
+DOODLIK_RELEASE_SMOKE и отдельный профиль CodexValidation/DoodlikReleaseSmoke.
+Buildexit0, playerexit0, version0.0.4, Development=false,295checksPASS:
+естественная генерация21платформы, физические отскоки/рост высоты, пауза,
+продолжение, настоящее падение/поражение, повтор, возврат домой и новый старт.
+Драйвер и эта тестовая сборка НЕ опубликованы. Production EXE обычного
+пользователя не запускался, чтобы не мигрировать его реальные сохранения.
+Это функциональное подтверждение отдельного same-code release-player,
+не утверждение о запуске неизменённого публикуемого EXE.
+Результаты Editor/Android-target gameplay,55quest UI,save migrations,
+новых механик и визуального контроля: Logs/Sky-Challenges-QA-20261030.txt
+и предыдущие отчёты по обновлению статистики/контента.
+
+АРХИВ И ПУБЛИКАЦИЯ
+RAR integrity test PASS. Полностью распакован в новую
+.utmp/Release004-ArchiveCheck-20261030: все194файла совпали поSHA256,
+включая правильное русское имяTXT. В корне архива ровно Windows-folder,
+APK и патчноут, как у0.0.3. После копирования на рабочий стол все195файлов
+выпуска ещё раз побайтно сверены со staging (включаяRAR).
+Предыдущие0.0.1/0.0.2/0.0.3 не изменялись; контрольные суммы003 APK/RAR/TXT
+совпали с опубликованными значениями от18.10.2026.
+
+ЛОГИ
+Logs/Release-0.0.4-Build-Staging-20261030.log — WindowsPASS/UnityGradleFAIL.
+Logs/Release-0.0.4-Gradle-stdout-20261030.log — финальный AndroidPASS.
+Logs/Release-0.0.4-Gradle-stderr-20261030.log — scopedJavaoption.
+Logs/Release-0.0.4-Artifact-Audit-20261030.txt — binary/manifest/signing.
+Logs/Release-0.0.4-Smoke-QA-20261030.txt — подробности отдельного smoke.
+Logs/Release-0.0.4-Actual-ReleasePlayer-Smoke-20261030.log —295checksPASS.
+Logs/Release-0.0.4-Rar-Create-20261030.log — упаковка.
+Известны предупреждения Gradle9 о будущей несовместимости deprecated
+options с Gradle10 и ComputeBuffer disposal warning при выходе smoke;
+новых игровых compilation/runtime ошибок проверками не обнаружено.
+
+SHA256 ОПУБЛИКОВАННЫХ ФАЙЛОВ
+APK 3165E4EA6DD28B6FEC5B0C5DA94A972C5CF6FBE13BD77FCB911ECD21742A2E98
+RAR 352B1A1A5375BDCDC41CD6F3C815F80B6242546A1874C8728607A19CEBFD4748
+TXT 75BEB9FF72CE844844983EFD6AF5149453F74FC55D36DB8A0EB5061F4D911B9D
+Windows Assembly-CSharp.dll:
+0E25F506D9EF0AC9C1980220ACA645BABF8B824A61ACB788FBB42BFEA3A45DB2
+
+ОГРАНИЧЕНИЯ
+APK не устанавливался и не запускался на физическом телефоне.
+Windows проверен отдельным изолированным release-smoke и статическим
+аудитом публикуемых артефактов, не ручной игрой в production EXE.
+Нет обещания отсутствия всех возможных ошибок или performance-замеров
+на всех устройствах. Перед широким распространением полезен обычный
+пользовательский запуск/обновление и проверка реального телефона.
+============================================================

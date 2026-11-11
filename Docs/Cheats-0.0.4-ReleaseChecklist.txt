@@ -1,0 +1,117 @@
+DOODLIK 0.0.4 CHEATS — КОМПЛЕКТ И ПРОВЕРКА
+31.10.2026
+============================================================
+
+Отдельный чит-вариант той же версии 0.0.4, Android versionCode 4.
+Обычный комплект 0.0.4 не заменяется. Чит-архив содержит только чит-версии.
+Папка: C:\Users\TokyoGhoul\Desktop\Doodlik\v0.0.4
+
+НОВЫЕ ФАЙЛЫ
+Doodlik-Windows-Cheats-v0.0.4\Doodlik Cheats.exe
+Doodlik-Android-Cheats-v0.0.4.apk
+Doodlik_v0.0.4_Cheats_Инструкция.txt
+Doodlik v0.0.4 Cheats.rar
+
+КОНФИГУРАЦИЯ
+Unity 6000.5.2f1. Windows x64/Mono, Android ARM64/IL2CPP.
+Non-Development, только явный define DOODLIK_CHEATS.
+productName Doodlik Cheats, Android com.tokyoghoul.doodlik.cheats.
+Устанавливается рядом с основной игрой, использует отдельное хранилище.
+Сохранения основной игры не импортировались и не изменялись.
+Исходные production company/product/package/version не заменены.
+
+АДМИНКА
+Четыре вкладки, восемь ползунков, тестовая валюта/вещи/улучшения,
+бессмертие, скорость движения/времени, прыжок/гравитация/куст,
+выдача/снятие бафов, настоящая конечная ракета, прыжок по команде.
+Все команды требуют временный sandbox. Выход очищает бафы и множители.
+Никаких новых серверов, пакетов, прав ОС или изменений схемы сохранения.
+Тестовая попытка не становится обычной после выключения читов.
+
+ПРОВЕРКИ
+AdminProgressValidation: 175 checks — валюта, все вещи, уровни 0..3 во
+всех 4 режимах, неверный ввод, две копии сохранения, future-save и reset.
+AdminRuntimeValidation: 41 checks — диапазоны/NaN/Infinity, настоящие
+Rigidbody скорость/гравитация, пауза, бафы, сброс и нейтральность вне sandbox.
+AdminGameplayValidation: 37 checks — бессмертие, физическая поверхность
+шипов, отсутствие воздушного отскока, падение и запрет обычных рекордов.
+Старый AdminToolsValidation: PASS, включая точное восстановление обеих
+копий прогресса, повторное открытие и подбор вещей.
+Расширенный UI: по 1497 checks на Windows- и Android-target, 4 вкладки,
+3 настоящих viewport 1280x720/720x1280/1600x720, 13 снимков на target.
+Проверены настоящие кнопки и Slider callbacks, безопасные границы,
+отсутствие переполнения текста и перекрытия надписей ручками ползунков,
+выдача/отмена настоящей ракеты из панели, пауза и возврат домой.
+Снимки проверены визуально. Высокая ручка Slider исправлена до сборки.
+Исправлена только QA-проекция снимков: старый помощник закреплял aspect
+камеры и искажал portrait при временном переводе overlay в camera UI.
+На Android QA записано известное Editor-only исключение SearchDatabase
+IndexationOnStartup. Оно классифицировано отдельно и не является игрой.
+
+СБОРКА
+Изолированная .utmp/ReleaseBuild-004-20261030, актуальные Assets,
+Packages и ProjectSettings, runtime-файлы сверены с источником.
+BuildReleases.BuildCheatsToStaging. Windows BuildPipeline PASS.
+Android C#/IL2CPP/Gradle inputs подготовлены этой же сборкой. Встроенный
+Java вызов вновь завершился Unable to establish loopback connection.
+Финальный APK собран из этих же inputs bundled OpenJDK/Gradle 9.1:
+процесс-локальный jdk.net.unixdomain.tmpdir, assembleRelease --no-daemon.
+BUILD SUCCESSFUL in 1m 4s, 89 tasks. Системные настройки не менялись.
+Подпись APK проверена, совпадает с обычной 0.0.4; новый ключ не создавался.
+
+АРТЕФАКТЫ
+Windows: 192 files, 210251197 bytes, AMD64, отдельный app.info.
+APK: 54038625 bytes, версия 0.0.4/code4, SDK26–36, ARM64, не debuggable.
+В обоих compiled inputs активная админка; каталог 55 испытаний;
+нет UnityEditor references, Smoke/Validation/Codex driver типов.
+Serialized bindings: Windows 5 files/131 components/2179 scripts/errors0;
+APK 103 files/131 components/2145 scripts/errors0.
+APK metadata и все 7 native SO сверены с текущими Gradle inputs.
+Отладочные Burst symbols сохранены отдельно в Logs, не включены в комплект.
+
+ОТДЕЛЬНЫЙ PLAYER SMOKE
+CheatPlayerSmokeBuild.Run, отдельный непубликуемый non-Development player
+с тем же игровым кодом и QA identity CodexValidation/DoodlikCheatsSmoke.
+Build exit0, player exit0, CHEATS_PLAYER_SMOKE_PASS checks=459.
+Натуральный старт, платформы, админка, монеты, все вещи, 6 настроек,
+бессмертие, щит/магнит/замедление/ракета/очистка/ручной прыжок,
+настоящий физический отскок, пауза/темп, восстановление обычного профиля
+и нормальная новая попытка после перезапуска.
+QA-драйвер с отдельным define DOODLIK_CHEATS_SMOKE не вошёл в публикацию.
+Известное ComputeBuffer disposal warning только при выходе smoke сохранено.
+Все тесты с -noaudio и принудительным volume0/masterMute в QA.
+
+АРХИВ
+RAR integrity PASS. Полностью распакован в новую изолированную папку;
+все 194 файла побайтно совпали со staging по SHA256.
+В корне только чит-Windows, чит-APK и инструкция, без обычных версий.
+RAR: 107248512 bytes.
+После публикации все 195 файлов (включая архив) сверены со staging по SHA256.
+Обычный архив, APK, патчноут и DLL 0.0.4 сохранили прежние контрольные суммы.
+В папке выпуска ровно два RAR: обычный и отдельный Cheats.
+
+SHA256
+APK 0503F7BADB442CF0366143374F4D1446DD75C48A8B37E5AACA8962A5725548B4
+RAR 3549B93D5DED48C0C5EF9A0CBF6AFA4FFF18AD507953960E7DA6FCA2D6BD86CF
+Инструкция DD4C4078CFE648789AFDC08301C40B9199636EDC5ABE41D431DCB05BA4812C90
+Windows Assembly-CSharp.dll:
+9F61B7215E79EB3FCB0817D692016D078DA23F96B188217099BC2428BA016766
+
+ЛОГИ
+Logs/Cheats004-ExpandedUI-Windows-20261031-r4.log
+Logs/Cheats004-ExpandedUI-Android-20261031-r4.log
+Logs/Cheats004-AdminUI-Windows-20261031/
+Logs/Cheats004-AdminUI-Android-20261031/
+Logs/Cheats004-Build-Staging-20261031.log — WindowsPASS/embeddedGradleFAIL.
+Logs/Cheats004-Gradle-stdout-20261031.log — финальный AndroidPASS.
+Logs/Cheats004-Smoke-Build-20261031.log
+Logs/Cheats004-Actual-Player-Smoke-20261031.log
+Logs/Cheats-0.0.4-Artifact-Audit-20261031.txt
+
+ОГРАНИЧЕНИЯ
+Физический телефон не подключался: APK не устанавливался на устройство.
+Опубликованный EXE не запускался с реальными пользовательскими профилями;
+функциональный запуск проведён отдельным same-code QA player.
+Произвольная ручная физика намеренно не обещает достижимости старой
+генерации; предупреждение присутствует в панели и инструкции.
+============================================================

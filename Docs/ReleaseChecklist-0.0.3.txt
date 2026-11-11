@@ -1,0 +1,106 @@
+ВНИМАНИЕ: ИСТОРИЧЕСКИЙ ОТЧЁТ О СЛОМАННОМ КОМПЛЕКТЕ ОТ 14.10.2026.
+Этот комплект заменён 18.10.2026. Наличие типов в DLL не подтверждало
+привязки скриптов в сцене: исходная проверка пропустила их потерю.
+Последний комплект от 18.10.2026 исправляет также первый прыжок при
+поздней смене размера экрана. Актуальные результаты и контрольные суммы:
+OpeningJump-QA-20261018.txt. Repair-0.0.3-20261018.txt — первая пересборка.
+Оригинал этого отчёта сохранён в Logs/ReleaseChecklist-0.0.3-original-20261014.txt.
+
+DOODLIK 0.0.3 — СБОРКА И ПРОВЕРКА АРТЕФАКТОВ
+14.10.2026
+
+Статус: готово для передачи тестерам, с ограничениями проверки устройств.
+Папка: C:\Users\TokyoGhoul\Desktop\Doodlik\v0.0.3
+
+СОСТАВ
+• Doodlik-Windows-v0.0.3\ — Windows x64, Mono, 203813106 байт.
+• Doodlik-Android-v0.0.3.apk — Android ARM64, IL2CPP, 53494347 байт.
+• Doodlik_v0.0.3_Патчноут.txt — изменения после выпущенной 0.0.2.
+• Doodlik v0.0.3.rar — обе сборки и TXT, 106307319 байт.
+Старые каталоги v0.0.1 и v0.0.2 не изменялись.
+
+КОНФИГУРАЦИЯ
+Unity 6000.5.2f1 (eb73d3b415a1), исходный проект C:\Users\TokyoGhoul\Doodlik.
+В исходном PlayerSettings изменены bundleVersion на 0.0.3 и Android code на 3.
+companyName=DefaultCompany, productName=Doodlik — прежняя идентичность данных.
+Android package: com.tokyoghoul.doodlik; min SDK 26, target SDK 36.
+Включена одна игровая сцена: Assets/Scenes/SampleScene.unity.
+Обычные release-сборки, не Development. Пакеты не обновлялись.
+Исходный Git HEAD: 475853f8d5f7daa2eaddc87c32d6bf33cce2820b.
+Собрано из текущего рабочего дерева с существующими несохранёнными в Git
+изменениями; они не отменялись. Коммит для выпуска не создавался.
+
+СПОСОБ СБОРКИ
+Работа выполнена в .utmp/BuildQA-20261005 после синхронизации Assets,
+Packages и ProjectSettings. Основной редактор не управлялся, игра не
+запускалась с пользовательскими сохранениями. Все процессы запускались
+скрыто; Unity с -noaudio.
+Команда Unity: -batchmode -quit -noaudio -buildTarget Win64
+-projectPath <QA-копия> -executeMethod BuildReleases.BuildAll
+-logFile Logs/Release-0.0.3-BuildAll.log.
+
+Windows BuildPipeline завершился успешно, затем Unity подготовил весь
+Android IL2CPP/Gradle-проект. Встроенный вызов Gradle завершился с ошибкой
+среды Unable to establish loopback connection, как при выпуске 0.0.2.
+Первая прямая попытка тоже не прошла: Gradle не передаёт mutable-свойство
+jdk.net.unixdomain.tmpdir в стартовые аргументы дочерней JVM, а оно нужно
+до создания внутреннего AF_UNIX-канала Java-селектора.
+
+Успешный повтор: в окружение только конкретного процесса передан
+JAVA_TOOL_OPTIONS=-Djdk.net.unixdomain.tmpdir=C:/Users/TokyoGhoul/Doodlik/.utmp/jtmp
+и запущен встроенный OpenJDK/bin/java.exe с аргументами:
+-classpath <AndroidPlayer/Tools/gradle/lib/gradle-launcher-9.1.0.jar>
+org.gradle.launcher.GradleMain -Dorg.gradle.jvmargs=-Xmx4096m
+--no-daemon assembleRelease --stacktrace
+в .utmp/BuildQA-20261005/Library/Bee/Android/Prj/IL2CPP/Gradle.
+Результат: BUILD SUCCESSFUL in 52s, 89 задач, exit 0.
+Системные Java-настройки, firewall и глобальные переменные не менялись.
+Полученный launcher-release.apk скопирован в папку выпуска без переподписи.
+
+ПОДТВЕРЖДЁННЫЕ ПРОВЕРКИ
+• Windows: EXE, UnityPlayer, MonoBleedingEdge и Doodlik_Data присутствуют;
+  app.info содержит DefaultCompany/Doodlik; globalgamemanagers содержит
+  игровую версию 0.0.3, не 0.0.2. PE FileVersion EXE — версия движка Unity,
+  поэтому она не использовалась как версия игры.
+• В release-сборках Windows и Android присутствуют DifficultyRules,
+  DifficultyGenerationProfile, RunRecords, Player и FrontEndUI.
+  Через Cecil проверено: AdminTools.IsAvailable скомпилирован в false,
+  Update админ-панели отсутствует. Android проверен до этапа IL2CPP.
+• aapt подтвердил пакет, label Doodlik, версию 0.0.3/code3, ARM64 и SDK.
+  application-debuggable отсутствует.
+• apksigner verify прошёл. SHA-256 сертификата совпадает с APK 0.0.2:
+  cd327499e822a46bff92454c16a23964dd265ce3dbd8412e62cf7983fc728144
+  Условия идентичности пакета/подписи для обновления сохранены.
+• RAR integrity test прошёл. Архив дополнительно полностью распакован
+  в .utmp/Release003-ArchiveCheck: все 194 файла совпадают по SHA-256
+  с исходными файлами выпуска; русское имя TXT сохранено правильно.
+  Первичная проверка имени через stdout RAR не прошла из-за кодировки
+  консоли; проверка реально извлечённого файла подтвердила корректность.
+• DoNotShip, Il2CppBackup и keystore в архиве отсутствуют. Burst-отладка
+  сохранена отдельно в Logs/Release-0.0.3-Symbols/Windows-Burst и Android-Burst.
+• Исходный и сборочный Player.cs, Spawner.cs и packages-lock.json сверены.
+  До смены номера версии те же игровые изменения прошли проверки,
+  описанные в Difficulty-QA-20261014.txt и QA-2026-10-14.txt.
+
+ЛОГИ
+Logs/Release-0.0.3-BuildAll.log — Windows PASS, встроенный Android Gradle FAIL.
+Logs/Release-0.0.3-Gradle-stdout.log и -stderr.log — первый прямой FAIL.
+Logs/Release-0.0.3-Gradle-Env-stdout.log и -stderr.log — финальный Android PASS.
+В логах есть предупреждения устаревших Unity API, преобразований типов
+в URP-шейдерах и будущей несовместимости Gradle-опций с Gradle 10.
+Ошибок C# игры и ошибок компиляции её шейдеров не обнаружено.
+
+SHA-256
+APK: BCA8ABC6F2ABEA576BE8F5EDFA023D1D6C2C91115236C72F578E5359810C7348
+RAR: FF89851224DF814DB4DD160B74052376253D74603CE0C3A6F4D1AAC056A4DD43
+TXT: 9BCEC890B95342D5571B6ADF5DD9B0CEBE886E18DAF8EF86CC7BAE4B8D76D2AA
+
+ОГРАНИЧЕНИЯ
+Новый APK не устанавливался на физический телефон. EXE не запускался
+с пользовательскими сохранениями. Автопроверки предыдущего этапа были
+Editor Play Mode, не ручное прохождение и не замеры производительности
+этой сборки на устройствах. Перед широким распространением проверить
+запуск обеих версий, обновление поверх 0.0.2 без удаления данных,
+сохранения, поворот, управление и субъективную разницу сложностей.
+Подпись остаётся прежним локальным отладочным ключом: подходит для
+обновления этих тестовых APK, но решение о ключе магазина остаётся отдельным.
